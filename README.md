@@ -43,6 +43,11 @@ $item->attributes(array("label" => "Login", "validation" => array("required" => 
 $form->item($item);
 ```
 
+## Rendering Form
+Once the form and all of it's items are configurate properly you can output the form on the page.
+```
+$form->render();
+```
 
 ## Credit
 Thanks to Josh Cunningham <josh@joshcanhelp.com> author of php-form-builder for inspiring this project.
