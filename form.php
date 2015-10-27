@@ -1,15 +1,15 @@
 <?php
 /**
  * Form Creation Class
+ * https://github.com/QuestionDevelopment/php-form
  *
  * @version 0.9
- * @package xesm
- * @subpackage plugin
+ * @package php-form
  * @category class
  *
  * @license MIT http://opensource.org/licenses/MIT
  */
-namespace plugin\form;
+
 /*
  * Form Creation Class
  * 
@@ -49,22 +49,11 @@ class form {
 
     //system properties
     private $autofocus_count = 0; //system count for how many autofocus are declared
-    private $c = array(); //system that will generate form items + javascript class from
     private $cache_status = "off"; //system indicator to determine status of cache system (off/primed/complete/clear)
     private $error = array(); //system errors
     private $item = array(); //system form item objects
     private $item_count = 0; //system count for $items
     private $warning = array(); //system warnings
-
-    /**
-     * Form Class Constructor
-     *
-     * @param array $c All class dependencies are imported and verified here
-     */
-    public function __construct($c)
-    {
-        $this->c = $c;
-    }
 
     /*
      * Load form configuration settings post initialization
@@ -81,6 +70,7 @@ class form {
             //user is allowed to send a string if they just want to set the action
             $this->attribute("action", $user_settings);
         }
+        return this;
     }
 
     /*
@@ -145,14 +135,13 @@ class form {
     /*
      * Adds item(s) to the form
      * 
-     * @param var $item_settings User definied items settings, can be a string or array
+     * @param object $item_settings User definied items settings, can be a string or array
      */
-    public function item($item_settings = array())
+    public function item($item_object)
     {
-        if ($this->cache_status != "complete" AND is_array($item_settings) AND count($item_settings) > 0){          
+        if ($this->cache_status != "complete" AND is_object($item_object)){          
             //increment form item count
-            $this->item[$this->item_count] = $this->c->form_item;
-            $this->item[$this->item_count]->init($item_settings);
+            $this->item[$this->item_count] = $item_object;
             $this->item_count++;
         }
     }
@@ -437,7 +426,7 @@ class form {
     *
     * @param booleon $html Output the form to the screen or return it
     */
-    function render($output = true)
+    function render($form_js, $output = true)
     {
         if ($this->cache_status == "complete") {
             $html = file_get_contents($this->cache_directory.$this->cache);
@@ -478,8 +467,8 @@ class form {
                     $html .= $item->render($this->markup, $this->prefix);
                 } // end foreach item
 
-                if ($this->js AND $this->captcha) {
-                    $html .= $this->c->form_js->captcha($this->captcha_system, $this->captcha_label);
+                if ($this->js AND $this->captcha AND is_object($form_js)) {
+                    $html .= $form_js->captcha($this->captcha_system, $this->captcha_label);
                 }
 
                 if (!empty($this->reset)) {
@@ -497,8 +486,8 @@ class form {
                     $html .= '</div>';
                 }
 
-                if ($this->js) {
-                    $html .= $this->c->form_js->render($this->item, $this->prefix_js, $this->editor);
+                if ($this->js AND is_object($form_js)) {
+                    $html .= $form_js->render($this->item, $this->prefix_js, $this->editor);
                 }
 
                 if ($this->cache_status == "primed") {
@@ -511,3 +500,4 @@ class form {
         else { return $html; }
     }
 }
+

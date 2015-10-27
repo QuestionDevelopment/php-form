@@ -1,15 +1,15 @@
 <?php
 /**
  * Form Creation Class
+ * https://github.com/QuestionDevelopment/php-form
  *
  * @version 0.9
- * @package xesm
- * @subpackage plugin
+ * @package php-form
  * @category class
  *
  * @license MIT http://opensource.org/licenses/MIT
  */
-namespace plugin\form;
+
 /*
  * Form Creation Class
  *
@@ -151,6 +151,7 @@ class form_item {
             $this->attributes($user_settings);
         }
         $this->render_method();
+        return $this;
     }
 
     /*
@@ -641,3 +642,4 @@ class form_item {
         return $editor;
     }
 }
+
