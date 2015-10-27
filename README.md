@@ -7,18 +7,18 @@ A simple and powerful form building system.
 The first step in creating a form is to initialize the class and assign the form variables.  For more details and to view all possible variable settings see [Form Plugin Data](https://github.com/QuestionDevelopment/php-form/wiki/Form-Plugin-Data)
 
 ```
-$c->form->init(array("action" => "/account/login/", "title" => "Login", "submit" => "Login"));
+$form = new \ssww\object\form(array("action" => "/admin/user/edit.php", "title" => "User", "submit" => "Save"));
 ```
 
 ```
-$c->form->init();
-$c->form->attribute("action" => "/account/login/");
-$c->form->attribute("title" => "Login");
+$form = new \ssww\object\form();
+$form->attribute("action" => "/account/login/");
+$form->attribute("title" => "Login");
 
 $settings = array();
-$settings ["submit"] = "Login";
-$settings ["reset"] = "Reset";
-$c->form->attributes($settings);
+$settings["submit"] = "Login";
+$settings["reset"] = "Reset";
+$form->attributes($settings);
 ```
 
 ## Adding Form Items
@@ -26,14 +26,23 @@ Once the form has been initialized items can be added to it.  The items will be 
 
 ```
 $items = array();
-$items[] = array("type" => "text", "label" => "Email","validation" => array("required" => true,"email" => true));
-$items[] = array("type" => "password", "label" => "Password","validation" => array("required" => true));
-$c->form->items($items);
+$items[] = new \ssww\object\form_item(array("type" => "text", "label" => "Login", "validation" => array("required" => true)));
+$items[] = new \ssww\object\form_item(array("type" => "text", "label" => "Password", "validation" => array("required" => true)));
+$form->items($items);
 ```
 
 ```
-$c->form->item(array(("type" => "text", "label" => "Email","validation" => array("required" => true,"email" => true));
+$item = new \ssww\object\form_item(array("type" => "text", "label" => "Login", "validation" => array("required" => true)));
+$form->item($item);
 ```
+
+```
+$item = new \ssww\object\form_item();
+$item->attribute("type" => "text");
+$item->attributes(array("label" => "Login", "validation" => array("required" => true)));
+$form->item($item);
+```
+
 
 ## Credit
 Thanks to Josh Cunningham <josh@joshcanhelp.com> author of php-form-builder for inspiring this project.
