@@ -136,6 +136,11 @@ class form_item {
         )
     );
 
+    public function __construct($user_settings = "")
+    {
+        $this->init($user_settings);        
+    }
+    
     /*
      * Load form configuration settings post initialization
      *
