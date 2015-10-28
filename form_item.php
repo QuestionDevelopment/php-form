@@ -455,10 +455,10 @@ class form_item {
         //Wrapper Input Item Div
         $html .= '<div';
         if ($this->auto_class AND !empty($this->id)) {
-            $html .= ' id="' . $this->prefix . 'input_container_' . $this->id . '"';
+            $html .= ' id="' . $this->prefix . 'item_input_container_' . $this->id . '"';
         }
         if (count($this->class)){
-            $html .= ' class="' . $this->prefix . 'input_container '.implode("_input_container ", $this->class).'"';
+            $html .= ' class="' . implode("_input_container ", $this->class).'_input_container"';
         }
         $html .= '>';
 
