@@ -9,7 +9,7 @@
  *
  * @license MIT http://opensource.org/licenses/MIT
  */
-
+namespace ssww\object;
 
 /*
  * Form Creation Class
@@ -451,7 +451,10 @@ class form {
                     $auto_name = preg_replace("/[^a-zA-Z\s]/", "", $item->label);
                     $item->name = strtolower(str_replace(" ","_",$auto_name));
                 } else if (!empty($item->label) AND $item->render_method == "option"){
-                    $temp_option_name = strtolower(preg_replace("/[^a-zA-Z0-9\s]/", "", $item->label))."[]";
+                    $temp_option_name = strtolower(preg_replace("/[^a-zA-Z0-9\s]/", "", $item->label));
+                    if ($item->type == "checkbox"){
+                        $temp_option_name .= "[]";
+                    }                    
                     foreach ($item->option as &$option) {
                         if (!isset($option["name"])){
                             $option["name"] = $temp_option_name;
