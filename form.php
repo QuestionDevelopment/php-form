@@ -9,7 +9,6 @@
  *
  * @license MIT http://opensource.org/licenses/MIT
  */
-namespace ssww\object;
 
 /*
  * Form Creation Class
