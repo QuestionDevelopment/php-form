@@ -24,6 +24,7 @@ class form {
     public $auto_name = true; //autogenerate name (based off label)
     public $auto_option_value = true; //autogenerate option value (based off name)
     public $auto_tab_index = true; //autogenerate tab index
+    public $button = array(); //used to display extra buttons on the bottom of the form
     public $cache_directory = "xesm/plugin/form/cache/"; //cache directory where cache file lives
     public $cache = ""; //the local location of the cache file
     public $captcha = false; //generate captcha
@@ -597,6 +598,29 @@ class form {
                     $submit_name = str_replace(" ", "_", strtolower($submit_name));
                     $html .= "<div class='" . $this->prefix . "submit'><input class='" . $this->prefix . "submit_input' type='submit' name='" . $submit_name . "' value='" . $this->submit . "'></div>";
                 }
+                
+                if (count($this->button)) {
+                    foreach ($this->button as $button){
+                        if (isset($button["title"])){
+                            if (!isset($button["name"])){
+                                $button["name"] = preg_replace("/[^a-zA-Z\s]/", "", $button["title"]);
+                                $button["name"] = str_replace(" ", "_", strtolower($button["name"]));                                
+                            }
+                            $class = $this->prefix . "button";
+                            if (isset($button["id"])){ $class .= " ".$button["id"]."_container"; }
+                            $class_button = $this->prefix . "button_input";
+                            if (isset($button["class"])){ $class_button .= " ".$button["class"]; }
+                            
+                            $html .= "<div class='" . $class . "'><button type='button'";
+                            if (isset($button["id"])){ $html .= "id='".$button["id"]."' "; }
+                            if (isset($button["onclick"])){ $html .= 'onclick="'.$button["onclick"].'" '; }
+                            $html .= "class='" . $class_button . "' name='".$button["name"]."'>";
+                            $html .= $button["title"];                       
+                            $html .= "</button></div>";
+                        }
+                    }
+                }
+
                 $html .= '</form>';
                 if ($this->container) {
                     $html .= '</div>';
