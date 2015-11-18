@@ -1,0 +1,35 @@
+.form_container { margin:15px 0 0 0; }
+.form_error { border:2px solid #FF0000; background:#FF0000; color:#FF0000; }
+.form_clear { clear:both; height:0px; }
+.form_title { font-size:30px; font-weight:bold; margin-bottom:15px; }
+.form_item_container {}
+.form_item { display:block; margin:10px 5px; padding:10px; }
+.form_label { margin-left:7px; margin-right:15px; min-width: 180px; font-size:18px; font-weight:bold; color: #3f3f3f; position:relative; float:left; }
+.form_required { position:absolute; top:-5px; left:-10px; width:5px; height:5px; text-align:left; }
+.form_input { float:left; width: 180px; }
+.form_item_input_container { width: 70%; }
+.form_reset { margin-left:220px; clear:both; padding:6px 0; float:left; }
+.form_reset_input { cursor:pointer; padding:0.4em 1em; display:inline-block; margin-right:0.1em; text-align:center; background:#E6E6E6 url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50%; border:1px solid #D3D3D3; color:#555555; font-weight:normal; border-bottom-right-radius:4px; border-top-right-radius:4px; border-top-left-radius:4px; border-bottom-left-radius:4px; font-size:1.1em; }
+.form_reset_input:hover { border:1px solid #3f3f3f; color:#3f3f3f; }
+.form_submit { margin-left:40px; padding:6px 0; display:inline-block; }
+.form_submit_input { cursor:pointer; padding:0.4em 1em; display:inline-block; margin-right:0.1em; text-align:center; background:#E6E6E6 url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50%; border:1px solid #D3D3D3; color:#555555; font-weight:normal; border-bottom-right-radius:4px; border-top-right-radius:4px; border-top-left-radius:4px; border-bottom-left-radius:4px; font-size:1.1em; }
+.form_submit_input:hover { border:1px solid #3f3f3f; color:#3f3f3f; }
+.form_button {}
+.form_input_xsmall { width:60px; }
+.form_input_small { width:100px; }
+.form_input_medium { width:140px; }
+.form_input_large { width:220px; }
+.form_input_xlarge { width:260px; }
+.form_item_textarea { width: 80%; }
+
+.form_content { margin:-8px 0 10px 0; }
+
+.form_option_label, .form_item_checkbox, .form_item_radio { display:inline-block; padding:3px 5px; }
+
+.form_expand { margin-left: 220px; }
+.form_expand_item { margin:4px 0 0 0; }
+.form_expand_item_hidden { display:none; }
+
+.form_button { padding:6px 0; float:left; }
+.form_button_input { margin-left:10px; cursor:pointer; padding:0.4em 1em; display:inline-block; margin-right:0.1em; text-align:center; background:#E6E6E6 url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50%; border:1px solid #D3D3D3; color:#555555; font-weight:normal; border-bottom-right-radius:4px; border-top-right-radius:4px; border-top-left-radius:4px; border-bottom-left-radius:4px; font-size:1.1em; }
+.form_button_input:hover { border:1px solid #3f3f3f; color:#3f3f3f; }
