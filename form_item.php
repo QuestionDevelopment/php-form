@@ -502,21 +502,17 @@ class form_item {
         return $html;
     }
 
-    public function render_attributes($option = array(), $mode = "standard")
+    public function render_attributes($prohibited = array(), $attributes = array())
     {
-        if ($mode != "standard") {
-            $prohibited = $this->render_method_data[$mode]["prohibited_child"];
-        } else {
+        if (count($prohibited) == 0) {
             $prohibited = $this->render_method_data[$this->render_method]["prohibited"];
         }
         $html = "";
         foreach ($this->render_attributes as $attribute => $render_type){
             if (in_array($attribute, $prohibited) == false) {
                 $attribute_value = "";
-                if ($mode != "standard"){
-                    if (isset($option[$attribute])) {
-                        $attribute_value = $option[$attribute];
-                    }
+                if (isset($attributes[$attribute])) {
+                    $attribute_value = $attributes[$attribute];
                 } else if (isset($this->$attribute)){
                     $attribute_value = $this->$attribute;
                 }
@@ -560,7 +556,9 @@ class form_item {
 
     public function render_open_close()
     {
-        $html = '<'.$this->type . $this->render_attributes() . '>';
+        $prohibited = $this->render_method_data[$this->render_method]["prohibited"];
+        $prohibited[] = "value";
+        $html = '<'.$this->type . $this->render_attributes($prohibited) . '>';
         if (!empty($this->value) AND $this->value != false){ $html .= $this->value; }
         $html .= '</'.$this->type.'>';
         return $html;
@@ -572,7 +570,8 @@ class form_item {
         foreach ($this->option as $option) {
             $option["type"] = $this->type;
             $html .= '<div class="'.$this->prefix.'option_label">'.$option["label"].'</div>';
-            $html .= '<input' . $this->render_attributes($option, "option");
+            $prohibited = $this->render_method_data[$mode]["prohibited_child"];
+            $html .= '<input' . $this->render_attributes($prohibited, $option);
             if (isset($this->value)){
                 if (is_array($this->value) AND in_array($option["value"], $this->value)){
                     $html .= ' checked="checked"';
@@ -607,7 +606,8 @@ class form_item {
                 $option_group = "";
             }
             $html .= '<option';
-            $html .= $this->render_attributes($option, "select");
+            $prohibited = $this->render_method_data[$this->render_method]["prohibited_child"];
+            $html .= $this->render_attributes($prohibited, $option);
             if (!empty($this->value) AND $this->value == $option["value"]){
                 $html .= ' selected="selected"';
             }
