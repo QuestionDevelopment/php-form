@@ -214,10 +214,10 @@ class form_item {
         foreach ($this->render_method_data[$this->render_method]["required"] as $required_item_attribute){
             if (is_array($this->$required_item_attribute) AND count($this->$required_item_attribute) == 0) {
                 //checks for array based attributes
-                $this->error[] = "Required item attribute [". $required_item_attribute ."] with type [ array ] on item [" . $item_count . "] has 0 children.";
+                $this->error[] = "Required item attribute [". $required_item_attribute ."] with type [ array ] on item [" . $item_count . "][" . $this->id . "][" . $this->name . "][" . $this->label . "] has 0 children.";
             } else if (empty($this->$required_item_attribute) || $this->$required_item_attribute == false){
                 //checks for string based
-                $this->error[] = "Required item attribute [". $required_item_attribute ."] on item [" . $item_count . "] left blank.";
+                $this->error[] = "Required item attribute [". $required_item_attribute ."] on item [" . $item_count . "][" . $this->id . "][" . $this->name . "][" . $this->label . "] left blank.";
             }
         }
 
@@ -226,10 +226,10 @@ class form_item {
             if (isset($this->$prohibited_item_attribute)){
                 if (is_array($this->$prohibited_item_attribute) AND count($this->$prohibited_item_attribute)) {
                     $this->$prohibited_item_attribute = array();
-                    $this->warning[] = "Prohibited item attribute [" . $prohibited_item_attribute . "] with type [" . $this->type . "] on item [" . $item_count . "] : Attribute removed.";
+                    $this->warning[] = "Prohibited item attribute [" . $prohibited_item_attribute . "] with type [" . $this->type . "] on item [" . $item_count . "][" . $this->id . "][" . $this->name . "][" . $this->label . "] : Attribute removed.";
                 } else if ($this->$prohibited_item_attribute != true AND !empty($this->$prohibited_item_attribute)) {
                     $this->$prohibited_item_attribute = false;
-                    $this->warning[] = "Prohibited item attribute [" . $prohibited_item_attribute . "] with type [" . $this->type . "] on item [" . $item_count . "] : Attribute removed.";
+                    $this->warning[] = "Prohibited item attribute [" . $prohibited_item_attribute . "] with type [" . $this->type . "] on item [" . $item_count . "][" . $this->id . "][" . $this->name . "][" . $this->label . "] : Attribute removed.";
                 }
             }
         }
