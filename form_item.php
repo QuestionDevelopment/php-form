@@ -125,7 +125,7 @@ class form_item {
             "type" => array("select"),
             "required" => array("type","name","option"),
             "prohibited" => array("placeholder"),
-            "prohibited_child" => array("placeholder","label","option","class","name"),
+            "prohibited_child" => array("placeholder","label","option","class","name","id","type","tabindex"),
             "method" => "render_select"
         ),
         "editor" => array(
@@ -532,7 +532,7 @@ class form_item {
                 }
             }
         }
-        if (count($this->class) AND $mode != "select"){
+        if (in_array("class", $prohibited) == false AND count($this->class)){
             $html .= ' class="'.implode(" ", $this->class).'"';
         }
         return $html;
