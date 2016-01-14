@@ -570,7 +570,7 @@ class form_item {
         foreach ($this->option as $option) {
             $option["type"] = $this->type;
             $html .= '<div class="'.$this->prefix.'option_label">'.$option["label"].'</div>';
-            $prohibited = $this->render_method_data[$mode]["prohibited_child"];
+            $prohibited = $this->render_method_data[$this->render_method]["prohibited_child"];
             $html .= '<input' . $this->render_attributes($prohibited, $option);
             if (isset($this->value)){
                 if (is_array($this->value) AND in_array($option["value"], $this->value)){
