@@ -347,21 +347,21 @@ class form {
         foreach ($item->validation as $validation => $validation_value){
             //maxlength
             if ($validation == "maxlength"){
-                $js .= "if(".$this->prefix."Elem('".$item->id."').value.length > ".$validation_value."){alert('".$name." exceeds the the maximium length of ".$validation_value."');";
-                if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                $js .= "if(".$this->prefix_js."Elem('".$item->id."').value.length > ".$validation_value."){alert('".$name." exceeds the the maximium length of ".$validation_value."');";
+                if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                 else { $js .= "};"; }
             } else if ($validation == "minlength"){
-                $js .= "if(".$this->prefix."Elem('".$item->id."').value.length < ".$validation_value."){alert('".$name." does not reach the minimium length of ".$validation_value."');";
-                if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                $js .= "if(".$this->prefix_js."Elem('".$item->id."').value.length < ".$validation_value."){alert('".$name." does not reach the minimium length of ".$validation_value."');";
+                if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                 else { $js .= "};"; }
             } else if ($validation == "required"){
                 if ($item->render_method == "option"){
-                    $js .= "if(".$this->prefix."Elem('".$item->id."').checked == false){alert('".$name." is a required field and must have a value');";
-                    if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                    $js .= "if(".$this->prefix_js."Elem('".$item->id."').checked == false){alert('".$name." is a required field and must have a value');";
+                    if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                     else { $js .= "};"; }
                 } else {
-                    $js .= "if(".$this->prefix."Elem('".$item->id."').value.length == 0){alert('".$name." is a required field and must have a value');";
-                    if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                    $js .= "if(".$this->prefix_js."Elem('".$item->id."').value.length == 0){alert('".$name." is a required field and must have a value');";
+                    if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                     else { $js .= "};"; }
                 }
             } else if ($validation == "equals"){
@@ -370,43 +370,43 @@ class form {
                 } else {
                     $equal_error = $name . " is required to have the value of : ".$validation_value;
                 }
-                $js .= "if(".$this->prefix."Elem('".$item->id."').value != '".$validation_value."'){alert('".$equal_error."');";
-                if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                $js .= "if(".$this->prefix_js."Elem('".$item->id."').value != '".$validation_value."'){alert('".$equal_error."');";
+                if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                 else { $js .= "};"; }
             } else if ($validation == "match"){
-                $match_elem_value = $this->prefix."Elem('".$validation_value."').value";
+                $match_elem_value = $this->prefix_js."Elem('".$validation_value."').value";
                 $match_error = $name . " must match the value of form field ".$validation_value. " with a current value of ";
-                $js .= "if(".$this->prefix."Elem('".$item->id."').value != ".$match_elem_value."){var errorOutput = '".$match_error."'+".$match_elem_value.";alert(errorOutput);";
-                if (isset($error_id)) { $js .= $this->prefix."ApplyError('".$error_id."'); return false; } else { ".$this->prefix."RemoveError('".$error_id."'); };"; }
+                $js .= "if(".$this->prefix_js."Elem('".$item->id."').value != ".$match_elem_value."){var errorOutput = '".$match_error."'+".$match_elem_value.";alert(errorOutput);";
+                if (isset($error_id)) { $js .= $this->prefix_js."ApplyError('".$error_id."'); return false; } else { ".$this->prefix_js."RemoveError('".$error_id."'); };"; }
                 else { $js .= "};"; }
             }  else {
                 if ($validation == "email") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && emailRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid email address');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && emailRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid email address');";
                 } else if ($validation == "phone") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && phoneRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid phone number [7, 10, 11 digits with or without hypthens]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && phoneRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid phone number [7, 10, 11 digits with or without hypthens]');";
                 } else if ($validation == "zip") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && zipRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid zip code [5 or 5-4 digits]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && zipRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid zip code [5 or 5-4 digits]');";
                 } else if ($validation == "alpha") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && alphaRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphabetic characters');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && alphaRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphabetic characters');";
                 } else if ($validation == "numeric") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && numericRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have numeric characters');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && numericRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have numeric characters');";
                 } else if ($validation == "alpha_numeric") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && alpha_numericRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphanumberic characters');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && alpha_numericRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphanumberic characters');";
                 } else if ($validation == "alpha_numberic_space") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && alpha_numericSpaceRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphanumberic characters and spaces');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && alpha_numericSpaceRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " is only allowed to have alphanumberic characters and spaces');";
                 } else if ($validation == "date") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && dateRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid date [XX/XX/XXXX]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && dateRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid date [XX/XX/XXXX]');";
                 } else if ($validation == "dateTime") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && dateTimeRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid date [DD/MM/YY HH:MM AM]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && dateTimeRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be a valid date [DD/MM/YY HH:MM AM]');";
                 } else if ($validation == "time") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && timeRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid time format [HH:MM AM]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && timeRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid time format [HH:MM AM]');";
                 } else if ($validation == "url") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && urlRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid url [http://www.example.com]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && urlRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid url [http://www.example.com]');";
                 } else if ($validation == "price") {
-                    $js .= "if(" . $this->prefix . "Elem('" . $item->id . "').value.length > 0 && priceRegex.test(" . $this->prefix . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid price [XXX.XX]');";
+                    $js .= "if(" . $this->prefix_js . "Elem('" . $item->id . "').value.length > 0 && priceRegex.test(" . $this->prefix_js . "Elem('" . $item->id . "').value) == false){alert('" . $name . " must be in a valid price [XXX.XX]');";
                 }
                 if (isset($error_id)) {
-                    $js .= $this->prefix . "ApplyError('" . $error_id . "'); return false; } else { " . $this->prefix . "RemoveError('" . $error_id . "'); };";
+                    $js .= $this->prefix_js . "ApplyError('" . $error_id . "'); return false; } else { " . $this->prefix_js . "RemoveError('" . $error_id . "'); };";
                 } else {
                     $js .= "};";
                 }
@@ -414,7 +414,6 @@ class form {
         }
         return $js;
     }
-
     /*
      * Implements the honeypot system
      */
