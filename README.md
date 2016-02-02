@@ -4,7 +4,7 @@ A simple and powerful form building system.
 
 
 ## Initializing the form
-The first step in creating a form is to initialize the class and assign the form variables.  For more details and to view all possible variable settings see [Form Plugin Data](https://github.com/QuestionDevelopment/php-form/wiki/Form-Plugin-Data)
+The first step in creating a form is to initialize the class and assign the form variables.  For more details and to view all possible variable settings see [Form Plugin Data](https://github.com/QuestionDevelopment/php-form/wiki/Form-Variables)
 
 ```
 $form = new form(array("action" => "/admin/user/edit.php", "title" => "User", "submit" => "Save"));
@@ -22,7 +22,7 @@ $form->attributes($settings);
 ```
 
 ## Adding Form Items
-Once the form has been initialized items can be added to it.  The items will be displayed in the order they were submitted.  For more details and to view all possible variable settings see [Form Plugin Item Data](https://github.com/QuestionDevelopment/php-form/wiki/Form-Plugin-Item-Data)
+Once the form has been initialized items can be added to it.  The items will be displayed in the order they were submitted.  For more details and to view all possible variable settings see [Form Plugin Item Data](https://github.com/QuestionDevelopment/php-form/wiki/Form-Item-Variables)
 
 ```
 $items = array();
